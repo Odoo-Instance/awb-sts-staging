@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!--<record id="helpdesk_ticket_form_inherit" model="ir.ui.view">
+            <field name="name">helpdesk.ticket.form.inherit</field>
+            <field name="model">helpdesk.ticket</field>
+            <field name="inherit_id" ref="helpdesk.helpdesk_ticket_view_form"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='priority']" position="after">
+                    <field name="priority_level" widget="selection"></field>
+                    <field name="product" widget="selection"></field>
+                </xpath>
+                <xpath expr="//field[@name='priority']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='description']" position="after">
+                    <group>
+                        <field name="resolution"
+                               placeholder="Input Internal Resolution Notes together with GitLab ticket details"
+                               required="1"/>
+                    </group>
+
+                </xpath>
+            </field>
+        </record>-->
+
+        <record id="helpdesk_stage_form_inherit" model="ir.ui.view">
+            <field name="name">helpdesk.stage.form.inherit</field>
+            <field name="model">helpdesk.stage</field>
+            <field name="inherit_id" ref="helpdesk.helpdesk_stage_view_form"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <xpath expr="//sheet/group[2]/group" position="inside">
+                    <div class="row ml-1" colspan="2">
+                        <label for="legend_done" string=" " class="o_status mt4" style="background: blue;"
+                               title="This step is done. Click to block or set in progress."
+                               aria-label="This step is done. Click to block or set in progress." role="img"/>
+                        <div class="col-11 pl-0">
+                            <field name="legend_blue"/>
+                        </div>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
