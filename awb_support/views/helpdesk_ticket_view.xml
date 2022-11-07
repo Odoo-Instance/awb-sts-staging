@@ -34,7 +34,7 @@
             <field name="arch" type="xml">
                 <xpath expr="//sheet/group[2]/group" position="inside">
                     <div class="row ml-1" colspan="2">
-                        <label for="legend_done" string=" " class="o_status mt4" style="background: blue;"
+                        <label for="legend_blue" string=" " class="o_status mt4" style="background: blue;"
                                title="This step is done. Click to block or set in progress."
                                aria-label="This step is done. Click to block or set in progress." role="img"/>
                         <div class="col-11 pl-0">
@@ -44,5 +44,18 @@
                 </xpath>
             </field>
         </record>
+
+        <record id="helpdesk_ticket_view_kanban_inherit" model="ir.ui.view">
+            <field name="name">helpdesk.ticket.kanban</field>
+            <field name="model">helpdesk.ticket</field>
+            <field name="inherit_id" ref="helpdesk.helpdesk_ticket_view_kanban"/>
+            <field name="arch" type="xml">
+                <field name="legend_done" position="after">
+                    <field name="legend_blue"/>
+                </field>
+            </field>
+        </record>
+
+
     </data>
 </odoo>
