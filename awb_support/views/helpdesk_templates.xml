@@ -25,6 +25,17 @@
                 </div>
             </xpath>
         </template>
+
+        <template id="tickets_portal_helpdesk_ticket" name="Helpdesk tickets timesheet" inherit_id="helpdesk.portal_helpdesk_ticket">
+            <xpath expr="//t/t/t/t/thead/tr/th[2]" position="after">
+                <th t-if="groupby == 'none'" class="w-100">Priority Level</th>
+                <th t-if="groupby == 'none'" class="w-100">Product Level</th>
+            </xpath>
+            <xpath expr="//t/t/t/t/t/tr/td[2]" position="after">
+                <td><t t-if="ticket.x_studio_priority_level"><span t-field="ticket.x_studio_priority_level"/></t></td>
+                <td><t t-if="ticket.x_studio_product_version"><span t-field="ticket.x_studio_product_version"/></t></td>
+            </xpath>
+        </template>
     </data>
 </odoo>
 
