@@ -14,6 +14,7 @@ AWB Support Ticketing System """,
     'depends': ['helpdesk', 'website_helpdesk_form'],
     'data': [
         'views/helpdesk_ticket_view.xml',
+        'views/helpdesk_templates.xml',
         #'views/helpdesk_templates.xml',
     ],
     'installable': True,
