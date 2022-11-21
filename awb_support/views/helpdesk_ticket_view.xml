@@ -56,6 +56,33 @@
             </field>
         </record>
 
+        <record id="helpdesk_tickets_view_tree" model="ir.ui.view">
+            <field name="name">helpdesk.ticket.tree</field>
+            <field name="model">helpdesk.ticket</field>
+            <field name="inherit_id" ref="helpdesk.helpdesk_tickets_view_tree"/>
+            <field name="arch" type="xml">
+                <field name="use_sla" position="before">
+                    <field name="ticket_number"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="helpdesk_ticket_view_form_inh" model="ir.ui.view">
+            <field name="name">helpdesk.ticket.form</field>
+            <field name="model">helpdesk.ticket</field>
+            <field name="inherit_id" ref="helpdesk.helpdesk_ticket_view_form"/>
+            <field name="arch" type="xml">
+                <field name="legend_done" position="after">
+                    <field name="legend_blue" invisible="1"/>
+                </field>
+                <field name="priority" position="before">
+                    <field name="ticket_number"/>
+                </field>
+                <field name="priority" position="after">
+                    <field name="product_version"/>
+                </field>
+            </field>
+        </record>
 
     </data>
 </odoo>

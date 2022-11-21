@@ -1,4 +1,4 @@
-from odoo import fields, models, api
+from odoo import fields, models, api, _
 from odoo.exceptions import UserError, AccessError
 
 # class HelpdeskTicket(models.Model):
@@ -18,11 +18,34 @@ class HelpdeskStage(models.Model):
 class HelpdeskTicket(models.Model):
     _inherit = 'helpdesk.ticket'
 
-
     kanban_state = fields.Selection(selection_add=[('blue', 'Blue')], string='Kanban State',
                                     ondelete={'blue': lambda recs: recs.write({'kanban_state': 'exist'})})
     legend_blue = fields.Char(related='stage_id.legend_blue', string='Kanban Completed Explanation', readonly=True,
                                 related_sudo=False)
+    ticket_number = fields.Char(string="Ticket Number")
+    x_studio_text_field_qmex6 = fields.Char(string="Resolution")
+    product_version = fields.Selection([('Odoo', 'Odoo'),
+                                         ('UHH', 'UHH'),
+                                         ('Netsuite', 'Netsuite'),
+                                         ('Google', 'Google')], string="Product")
+
+    @api.model
+    def create(self, vals):
+        common_seq = self.env['ir.sequence'].next_by_code('helpdesk.ticket')
+        if vals.get('product_version') == 'Odoo':
+            od_seq = self.env['ir.sequence'].next_by_code('seq_odoo_support_ticket')
+            vals['ticket_number'] = 'OD' + str(common_seq) + str(od_seq)
+        if vals.get('product_version') == 'UHH':
+            uhh_seq = self.env['ir.sequence'].next_by_code('seq_uhh_support_ticket')
+            vals['ticket_number'] = 'UH' + str(common_seq) + str(uhh_seq)
+        if vals.get('product_version') == 'Netsuite':
+            ns_seq = self.env['ir.sequence'].next_by_code('seq_netsuite_support_ticket')
+            vals['ticket_number'] = 'NS' + str(common_seq) + str(ns_seq)
+        if vals.get('product_version') == 'Google':
+            go_seq = self.env['ir.sequence'].next_by_code('seq_google_support_ticket')
+            vals['ticket_number'] = 'GO' + str(common_seq) + str(go_seq)
+        res = super(HelpdeskTicket, self).create(vals)
+        return res
 
     @api.depends('stage_id', 'kanban_state')
     def _compute_kanban_state_label(self):

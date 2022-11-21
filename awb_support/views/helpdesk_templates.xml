@@ -13,12 +13,12 @@
                         </div>
                     </div>
                 </div>
-                <div class="row mb-4" t-if="ticket.x_studio_product_version">
+                <div class="row mb-4" t-if="ticket.product_version">
                     <strong class="col-lg-2">Product Level</strong>
                     <div class="col-lg-10">
                         <div class="row">
                             <div class="col pl-sm-0">
-                                <div t-field="ticket.x_studio_product_version"/>
+                                <div t-field="ticket.product_version"/>
                             </div>
                         </div>
                     </div>
@@ -33,7 +33,7 @@
             </xpath>
             <xpath expr="//t/t/t/t/t/tr/td[2]" position="after">
                 <td><t t-if="ticket.x_studio_priority_level"><span t-field="ticket.x_studio_priority_level"/></t></td>
-                <td><t t-if="ticket.x_studio_product_version"><span t-field="ticket.x_studio_product_version"/></t></td>
+                <td><t t-if="ticket.product_version"><span t-field="ticket.product_version"/></t></td>
             </xpath>
         </template>
     </data>
