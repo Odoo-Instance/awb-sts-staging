@@ -13,6 +13,7 @@ AWB Support Ticketing System """,
     'category': 'Support',
     'depends': ['helpdesk', 'website_helpdesk_form'],
     'data': [
+        'data/ticket_sequence_data.xml',
         'views/helpdesk_ticket_view.xml',
         'views/helpdesk_templates.xml',
         #'views/helpdesk_templates.xml',
